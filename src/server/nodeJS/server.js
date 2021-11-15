@@ -9,8 +9,8 @@ app.use(bodyParser.json());
 app.use('/api/library', require('./server.route'));
 
 
-mongoose.connect('mongodb://localhost:27017/library', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://AmeerLala:ameerlala123@cluster0.i5wcv.mongodb.net/library?retryWrites=true&w=majority', { useNewUrlParser: true });
 
-app.listen(5001, () => {
+app.listen(process.env.PORT || 5001, () => {
     console.log('Server started on port 5001');
 });

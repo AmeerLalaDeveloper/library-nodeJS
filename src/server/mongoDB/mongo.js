@@ -12,15 +12,19 @@ const bookSchema = new Schema({
     },
     year: {
         type: Number,
+        required: true,
         min: [1, 'We Weren\'t'],
         max: [new Date().getFullYear(), `Year Cant Be More Than ${new Date().getFullYear()}`]
     },
     language: {
         type: String,
-        length: 2
+        required: true,
+        minlength: 2,
+        maxlength: 2
     },
     rating: {
         type: Number,
+        required: true,
         min: [0, "Less Than This Dont Sell The Book"],
         max: [5, "Okay Good Book But Dont Fly On YourSelf"]
     }

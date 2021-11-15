@@ -1,10 +1,9 @@
 const bookModel = require('../mongoDB/mongo.js').bookModel;
-const validator = require('validator')
 
-const getAllBooks = async (req, res) => {
-    const data = await bookModel.find({}, (err, data) => {
-        if (err) return res.status(404).send(err.message);
-        return res.status(200).send(data);
+const getAllBooks = (req, res) => {
+    bookModel.find({}, (err, data) => {
+        if (err) return res.status(404).json(err.message);
+        return res.status(200).json(data);
     });
 
 }
@@ -23,8 +22,8 @@ const addNewBook = (req, res) => {
 
 
     jumper.save((err, data) => {
-        if (err) return res.status(404).send(err.message);
-        return res.status(200).send(data);
+        if (err) return res.status(404).json(err.message);
+        return res.status(200).json(data);
     });
 
 
@@ -48,16 +47,16 @@ const updateBook = (req, res) => {
 const deleteBook = (req, res) => {
     const { id } = req.params;
     bookModel.findByIdAndDelete(id, (err, data) => {
-        if (err) return res.status(404).send(err.message);
-        return res.status(200).send(data);
+        if (err) return res.status(404).json(err.message);
+        return res.status(200).json(data);
     });
 }
 
 const getBookByYear = (req, res) => {
     const { year } = req.params;
     bookModel.find({ year: year }, (err, data) => {
-        if (err) return res.status(404).send(err.message);
-        return res.status(200).send(data);
+        if (err) return res.status(404).json(err.message);
+        return res.status(200).json(data);
     })
 }
 module.exports = {
